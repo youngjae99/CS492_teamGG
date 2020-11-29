@@ -1,0 +1,11 @@
+B: Hello, can I ask you something related with my administrations?
+A: Yes, can you tell me your student ID?
+B: It's 20208207.
+A: What's your problem?
+B: I found a notification that my registration fee is not recieved yet. But I sent it today morning, can you check it now?
+A: Okay, wait a moment please.
+B: Thanks.
+A: I confirm your fee is recieved but I think our administration system does not reflect yet. It will be shown before tommorrow.
+B: Okay, what a relief.
+A: Alright. Aren't there more questions?
+B: Yes. Thanks for your service.
