@@ -116,7 +116,7 @@ document.getElementById('name2').innerHTML=targetname
 
 var choice
 
-// firebase.database().ref().set({Sam:{1129:{'posneg':'positive','posment':{1:'pos1',2:'pos2'},'negment':{1:'neg1',2:'neg2'}}}})
+// firebase.database().ref().set({Sam:{1129:{'point':0.75,'posneg':'positive','posment':{1:'pos1',2:'pos2'},'negment':{1:'neg1',2:'neg2'}}}})
 
 firebase.database().ref('/'+targetname+'/'+date).once('value', function(snapshot) {
     mySnapshot=snapshot.val()

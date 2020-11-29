@@ -44,7 +44,7 @@ $(document).ready(function () {
         document.getElementById('point').innerHTML=point
     })
     
-});
+
 
 function getParam(sname) {
     var params = location.search.substr(location.search.indexOf("?") + 1);
@@ -91,3 +91,4 @@ function nextpage(){
 
 // firebase.database().ref().set({Sam:{1129:{'posneg':'positive','posment':{1:'pos1',2:'pos2'},'negment':{1:'neg1',2:'neg2'}}}})
 
+});

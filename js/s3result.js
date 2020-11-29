@@ -1,3 +1,6 @@
+$(document).ready(function () {
+
+
 var firebaseConfig = 
 {  apiKey: "AIzaSyCg2H_5AnifrBDQZ-gY82UtZYVwkfVLZPg",
     authDomain: "hai-gg-f140f.firebaseapp.com",
@@ -49,4 +52,5 @@ firebase.database().ref('/'+targetname+'/'+date).once('value', function(snapshot
 
     document.getElementById(selection).style.backgroundColor='#be93d4'
     
+})
 })
