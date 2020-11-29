@@ -16,7 +16,7 @@ async function analyzeSentimentInFile(bucketName, fileName) {
   const document = {
     gcsContentUri: `gs://${bucketName}/${fileName}`,
     type: 'PLAIN_TEXT',
-  };
+  }; 
 
   // Detects the sentiment of the document
   const [result] = await client.analyzeSentiment({document});

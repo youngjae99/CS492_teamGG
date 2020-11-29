@@ -1,13 +1,13 @@
 
 # install the client library
 npm install --save @google-cloud/language
-
+ 
 # service account export
 ## Linux or macOS
 export GOOGLE_APPLICATION_CREDENTIALS=".\GG backend-f3438741cdfc.json"
 ## Windows PowerShell
 # $env:GOOGLE_APPLICATION_CREDENTIALS="C:\Users\소영\Desktop\gg_project\GG backend-f3438741cdfc.json"
-## Windows prompt
+## Windows prompt 
 # set GOOGLE_APPLICATION_CREDENTIALS="C:\Users\소영\Desktop\gg_project\GG backend-f3438741cdfc.json"
 
 
