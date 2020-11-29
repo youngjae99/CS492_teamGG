@@ -1,9 +1,23 @@
 
 <head>
     <style type="text/css">
-        #result-box {border:1px; width: 800px;height:500px;background-color:#E5E5E5 ; border-radius:10px}
-        .decision {width: 100px;height: 50px; border-radius:10px;border-color:#E5E5E5}
+        #result-box {border:1px; width: 800px;height:500px;background-color:#d5d5d5 ; border-radius:10px;z-index:1;}
+        #inner-result-box {border:1px; width: 750px;height:480px;margin-top:20px}
+        .decision {width: 100px;height: 50px; border-radius:10px;border-color:#E5E5E5 !important;font-size:15px}
         #everything { margin-top: 100px}
+        #next_page {width: 200px;height: 50px; border-radius:10px;background-color:#808080;margin-top:20px;font-size:15px} 
+        #status_bar {background-image: linear-gradient(to right,#dc143c, #a0e989);;width:600px;height:20px;z-index:2;margin-top:20px}
+        #pos {display:inline; position:relative; left:550}
+        #title {font-size:20px}
+        #neg {display:inline; position:relative; left:70}
+        #receive-feedback {margin-top:20px}
+        td {width: 300px }
+        table {margin-top:30px;text-align:center}
+        #neg_chat {margin-top:30px}
+        #pos_chat {margin-top:30px}
+        #arrow-result {position:relative}
+        #arrow-up { width: 0; height: 0; border-left: 10px solid transparent;border-right: 10px solid transparent;border-bottom: 20px solid #808080;}
+
     </style>
 
 </head>
@@ -15,16 +29,49 @@
 <center>
     <div id="everything">
         <div id="result-box" >
-        This is my analysis on your relationship with <div id="name1" style="display:inline">Sam</div>.
-        <div id="inner-result-box"></div>
+        <div id='title'>This is my analysis on your relationship with <div id="name1" style="display:inline">Sam</div>.</div>
+        <div id="inner-result-box">
+            <div>
+                <div style="display:flex">
+                <div id='neg'>Negative</div>
+                <div id='pos'>Positive</div>
+                </div>
+                <div id='status_bar'>
+            
+                </div>  
+                <div id='arrow-result'>
+                <div id='arrow-up'></div>
+                <div id='point'></div>
+                </div>
+                <table>
+                    <tr>
+                        <td>
+                            <div>Most negative chats</div>
+                            <div id='neg_chat'></div>
+                        </td>
+                        <td>
+                            <div>Most positive chats</div>
+                            <div id='pos_chat'></div>
+                        </td>
+                    </tr>
+
+                </table>
+            
+            </div>
+            
+        </div>
         </div>
     <div id="receive-feedback">
         What's your thought?
         <div>I think my relationship with <div id="name2" style="display:inline">Sam</div><div style="display:inline"> is</div></div>
         <br>
-        <button class="decision" onClick="nextpage('positive')">Positive</button>
-        <button class="decision" onClick="nextpage('neutral')">Neutral</button>
-        <button class="decision" onClick="nextpage('negative')">Negative</button>
+        <button class="decision" onClick="apply('negative')">Negative</button>
+        <button class="decision" onClick="apply('neutral')">Neutral</button>
+        <button class="decision" onClick="apply('positive')">Positive</button>
+        <br>
+        <button id="next_page" onClick="nextpage()" disabled='true'>
+            See the final result!
+        </button>
     </div>
 </div>
 </center>
@@ -67,22 +114,53 @@ date=getParam('date')
 document.getElementById('name1').innerHTML=targetname
 document.getElementById('name2').innerHTML=targetname
 
-function nextpage(choice){
+var choice
 
-var mySnapshot;
-// firebase.database().ref('/'+targetname).once('value', function(snapshot) {
-//     mySnapshot=snapshot.val()
-// })
-// console.log(mySnapshot)
-// //console.log(choice)
-// firebase.database().ref('/'+targetname+'/'+date).set({
-//     mySnapshot,  
-//     'human_posneg':choice
+// firebase.database().ref().set({Sam:{1129:{'posneg':'positive','posment':{1:'pos1',2:'pos2'},'negment':{1:'neg1',2:'neg2'}}}})
 
-// })
+firebase.database().ref('/'+targetname+'/'+date).once('value', function(snapshot) {
+    mySnapshot=snapshot.val()
+    var posment=mySnapshot.posment
+    var negment=mySnapshot.negment
+    var point=mySnapshot.point
+    var inposment=posment[1]+'<br><br>'+posment[2]
+    var innegment=negment[1]+'<br><br>'+negment[2]
+    document.getElementById('neg_chat').innerHTML=innegment
+    document.getElementById('pos_chat').innerHTML=inposment
+    document.getElementById('arrow-result').style.left=300*(point)
+    document.getElementById('point').innerHTML=point
+})
 
-// location.href='Result_page_first.html?name='+targetname+'&date='+date
+function apply(sel){
+    
+firebase.database().ref('/'+targetname+'/'+date).once('value', function(snapshot) {
+    mySnapshot=snapshot.val()
+    var posneg=mySnapshot.posneg
+    var posment=mySnapshot.posment
+    var negment=mySnapshot.negment
+    var point=mySnapshot.point
+
+    var dic={}
+    if (typeof mySnapshot.posneg!=='undefined'){dic['posneg']=mySnapshot.posneg}
+    if (typeof mySnapshot.posment!=='undefined'){dic['posment']=mySnapshot.posment}
+    if (typeof mySnapshot.negment!=='undefined'){dic['negment']=mySnapshot.negment}
+    if (typeof mySnapshot.point!=='undefined'){dic['point']=mySnapshot.point}
+    dic['human_posneg']=sel
+    console.log(dic)
+
+    //firebase.database().ref('/'+targetname+'/'+date).remove()
+    firebase.database().ref('/'+targetname+'/'+date).set(
+    dic
+    )
+})
+document.getElementById('next_page').disabled=false
+
 }
+
+function nextpage(){
+    location.href='Result_page_first.html?name='+targetname+'&date='+date
+}
+
 
 </script>
 </body>
