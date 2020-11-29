@@ -1,0 +1,26 @@
+#result-box {
+    border: 1px;
+    width: 800px;
+    height: 500px;
+    background-color: #E5E5E5;
+    border-radius: 10px
+}
+
+.decision {
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+    border-color: #E5E5E5
+}
+
+#everything {
+    margin-top: 100px
+}
+
+tr {
+    height: 150px
+}
+
+td {
+    width: 300px
+}
