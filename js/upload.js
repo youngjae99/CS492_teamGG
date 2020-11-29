@@ -10,6 +10,13 @@ function upbtnclicked(){
     var f_name=document.getElementById("f_name").value
     var chat_log=document.getElementById("message").value
 
-    console.log(f_name, chat_log);
-    location.href = "./analyze.html?" + f_name+"/";
+    if(f_name.length>4 && chat_log.length>5){
+      console.log(f_name, chat_log);
+      location.href = "./analyze.html?" + f_name+"/";
+    }
+    else{
+      alert("Your input is too short!");
+    }
+
+    
 }
