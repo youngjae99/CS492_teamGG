@@ -24,3 +24,98 @@ tr {
 td {
     width: 300px
 }
+
+#result-box {
+    border: 1px;
+    width: 800px;
+    height: 500px;
+    background-color: #d5d5d5;
+    border-radius: 10px;
+    z-index: 1;
+}
+
+#inner-result-box {
+    border: 1px;
+    width: 750px;
+    height: 480px;
+    margin-top: 20px
+}
+
+.decision {
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+    border-color: #E5E5E5 !important;
+    font-size: 15px
+}
+
+#everything {
+    margin-top: 100px
+}
+
+#next_page {
+    width: 200px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #808080;
+    margin-top: 20px;
+    font-size: 15px
+}
+
+#status_bar {
+    background-image: linear-gradient(to right, #dc143c, #a0e989);
+    ;
+    width: 600px;
+    height: 20px;
+    z-index: 2;
+    margin-top: 20px
+}
+
+#pos {
+    display: inline;
+    position: relative;
+    left: 550
+}
+
+#title {
+    font-size: 20px
+}
+
+#neg {
+    display: inline;
+    position: relative;
+    left: 70
+}
+
+#receive-feedback {
+    margin-top: 20px
+}
+
+td {
+    width: 300px
+}
+
+table {
+    margin-top: 30px;
+    text-align: center
+}
+
+#neg_chat {
+    margin-top: 30px
+}
+
+#pos_chat {
+    margin-top: 30px
+}
+
+#arrow-result {
+    position: relative
+}
+
+#arrow-up {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 20px solid #808080;
+}
