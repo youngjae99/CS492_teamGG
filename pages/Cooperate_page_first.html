@@ -1,0 +1,89 @@
+
+<head>
+    <style type="text/css">
+        #result-box {border:1px; width: 800px;height:500px;background-color:#E5E5E5 ; border-radius:10px}
+        .decision {width: 100px;height: 50px; border-radius:10px;border-color:#E5E5E5}
+        #everything { margin-top: 100px}
+    </style>
+
+</head>
+<body>
+<script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-app.js"></script> 
+<script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-database.js"></script>
+
+<center>
+    <div id="everything">
+        <div id="result-box" >
+        This is my analysis on your relationship with <div id="name1" style="display:inline">Sam</div>.
+        <div id="inner-result-box"></div>
+        </div>
+    <div id="receive-feedback">
+        What's your thought?
+        <div>I think my relationship with <div id="name2" style="display:inline">Sam</div><div style="display:inline"> is</div></div>
+        <br>
+        <button class="decision" onClick="nextpage('positive')">Positive</button>
+        <button class="decision" onClick="nextpage('neutral')">Neutral</button>
+        <button class="decision" onClick="nextpage('negative')">Negative</button>
+    </div>
+</div>
+</center>
+
+
+<script> // below is js code, must be below all the components on the screen
+
+//setting firebase
+var firebaseConfig = 
+{  apiKey: "AIzaSyCg2H_5AnifrBDQZ-gY82UtZYVwkfVLZPg",
+    authDomain: "hai-gg-f140f.firebaseapp.com",
+    databaseURL: "https://hai-gg-f140f.firebaseio.com",
+    projectId: "hai-gg-f140f",
+    storageBucket: "hai-gg-f140f.appspot.com",
+    messagingSenderId: "108882535634",
+    appId: "1:108882535634:web:4a8200edf49c777a8eb90b",
+    measurementId: "G-20V6VJBDGD" }; // Initialize 
+
+
+firebase.initializeApp(firebaseConfig); 
+firebase.analytics(); 
+var database=firebase.database()
+
+function getParam(sname) {
+var params = location.search.substr(location.search.indexOf("?") + 1);
+var sval = "";
+params = params.split("&");
+for (var i = 0; i < params.length; i++) {
+
+    temp = params[i].split("=");
+
+    if ([temp[0]] == sname) { sval = temp[1]; }
+}
+return sval;
+}
+
+targetname=getParam('name')
+date=getParam('date')
+
+document.getElementById('name1').innerHTML=targetname
+document.getElementById('name2').innerHTML=targetname
+
+function nextpage(choice){
+
+var mySnapshot;
+// firebase.database().ref('/'+targetname).once('value', function(snapshot) {
+//     mySnapshot=snapshot.val()
+// })
+// console.log(mySnapshot)
+// //console.log(choice)
+// firebase.database().ref('/'+targetname+'/'+date).set({
+//     mySnapshot,  
+//     'human_posneg':choice
+
+// })
+
+// location.href='Result_page_first.html?name='+targetname+'&date='+date
+}
+
+</script>
+</body>
+
