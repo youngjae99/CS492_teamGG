@@ -7,7 +7,10 @@
 <style>
     tr {height:150px}
     td {width: 300px }
+    
 </style>
+
+<h2>Based on our thoughts, this is your relationship.</h2>
 <table>
 <tr>
     <td></td>
@@ -17,20 +20,20 @@
 </tr>
 <tr>
     <td id='AI -1'></td>
-    <td id='-1 -1'><center><h2>&#128520 Harmful</h2><h4>As we agreed</h4></center></td>
-    <td id='0 -1'><center><h2>&#128530 Bumpy but steady</h2><h4>As you know</h4></center></td>
-    <td id='1 -1'><center><h2>&#128526 Trush and confidential</h2><h4>You can talk about secret anger in secret!</h4></center></td>
+    <td id='-1 -1'><center><h2>&#128520 Harmful</h2><h4>As we agree.</h4></center></td>
+    <td id='0 -1'><center><h2>&#128530 Bumpy but steady</h2><h4>The words are not kind, but the relationship stays.</h4></center></td>
+    <td id='1 -1'><center><h2>&#128526 Trusty and confidential</h2><h4>You can talk about secret anger!</h4></center></td>
 </tr>
 <tr>
     <td id='AI 0'></td>
     <td id='-1 0'><center><h2>&#128545 Not a good person</h2><h4>She/he is not a good person as I saw in the text.I'll remember this relationship.</h4></center></td>
-    <td id='0 0'><center><h2>&#128566 Neutral and Dry</h2><h4>As we agreed</h4></center></td>
+    <td id='0 0'><center><h2>&#128566 Neutral and Dry</h2><h4>As we see,nothing special.</h4></center></td>
     <td id='1 0'><center><h2>&#128538 Shy but nice</h2><h4>It's a great relationship, you just don't show it.</h4></center></td>
 </tr>
 <tr>
     <td id='AI 1'></td>
     <td id='-1 1'><center><h2>&#128548 Surprising hate</h2><h4>She/he lets you down with good words. I'll remember this person.</h4></center></td>
-    <td id='0 1'><center><h2>&#128578 Neutral and positive</h2><h4>Not that emotional</h4></center></td>
+    <td id='0 1'><center><h2>&#128578 Neutral and positive</h2><h4>Not that emotional.</h4></center></td>
     <td id='1 1'><center><h2>&#129321 Cheering and enthusiastic</h2><h4>We both think this relationship is nice!</h4></center></td>
 </tr>
 
@@ -74,7 +77,22 @@ targetname=getParam('name')
 date=getParam('date')
 firebase.database().ref('/'+targetname+'/'+date).once('value', function(snapshot) {
     mySnapshot=snapshot.val()
-    if(mySnapshot.posneg=='positive'){document.getElementById('AI 1').innerHTML="<center><img src='../pictures/AI.png' width=\"100px\"/></center>"}
+    
+    var AI=''
+    if(mySnapshot.posneg=='positive'){AI='1'}
+    else if (mySnapshot.posneg=='neutral'){AI='0'}
+    else if (mySnapshot.posneg=='negative'){AI='-1'}
+    var human=''
+    if(mySnapshot.human_posneg=='positive'){human='1'}
+    else if (mySnapshot.human_posneg=='neutral'){human='0'}
+    else if (mySnapshot.human_posneg=='negative'){human='-1'}
+
+    document.getElementById('AI '+AI).innerHTML="<center><img src='../pictures/AI.png' width=\"100px\"/></center>"
+    document.getElementById('human '+human).innerHTML="<center><img src='../pictures/user.png' width=\"100px\"/></center>"
+    
+    var selection=human+' '+AI
+
+    document.getElementById(selection).style.backgroundColor='#be93d4'
     
 })
 </script>
