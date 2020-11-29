@@ -1,4 +1,5 @@
-$(document).ready(function () {
+document.addEventListener("DOMContentLoaded", function(event) { 
+// $(document).ready(function () {
 
 
 var firebaseConfig = 

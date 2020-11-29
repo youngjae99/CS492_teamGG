@@ -18,11 +18,11 @@
 }
 
 tr {
-    height: 150px
+    height: 40%
 }
 
 td {
-    width: 300px
+    width: 23%
 }
 
 #result-box {
@@ -33,6 +33,14 @@ td {
     border-radius: 10px;
     z-index: 1;
     padding: 10px;
+}
+
+.subtitle{
+    font-weight:bold
+}
+
+.badook{
+    border:solid 1px black;
 }
 
 #answer-box {
