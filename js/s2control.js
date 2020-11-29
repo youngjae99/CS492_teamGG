@@ -26,8 +26,8 @@ $(document).ready(function () {
     console.log("targetname:",targetname);
     console.log("date:",date);
     
-    document.getElementById('name1').innerHTML=targetname
-    document.getElementById('name2').innerHTML=targetname
+    document.getElementById('name1').innerHTML=unescape(targetname);
+    document.getElementById('name2').innerHTML=unescape(targetname);
 
     var choice
 
