@@ -11,5 +11,5 @@ function upbtnclicked(){
     var chat_log=document.getElementById("message").value
 
     console.log(f_name, chat_log);
-    location.href = "./analyze.html?" + f_name;
+    location.href = "./analyze.html?" + f_name+"/";
 }
