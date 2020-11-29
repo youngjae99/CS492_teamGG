@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="../assets/css/mobster.css">
     <link rel="stylesheet" href="./custom.css">
 
-    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-app.js"></script> 
+    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-database.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -80,7 +80,7 @@
                 <div class="container fg-white h-100">
                     <div class="row justify-content-center align-items-center text-center h-100">
                         <div class="col-lg-6">
-                            <h3 class="mb-3 fw-medium">It seems like...</h3>
+                            <h3 class="mb-3 fw-medium">Step 2. Choose an Option</h3>
                         </div>
                     </div>
                 </div>
@@ -92,21 +92,28 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
                         <div class="card-page">
-                            <h3 class="mb-3">Now you have to </h3>
+                            <h3 class="mb-3">Hmm.. I think </h3>
                             <div id="everything">
                                 <div id="result-box">
-                                    This is my analysis on your relationship with <div id="name1" style="display:inline">Sam</div>.
+                                    This is my analysis on your relationship with <div id="name1"
+                                        style="display:inline">Sam</div>.
                                     <div id="inner-result-box"></div>
                                 </div>
                                 <div id="receive-feedback">
-                                    What's your thought?
-                                    <div>I think my relationship with <div id="name2" style="display:inline">Sam</div>
-                                        <div style="display:inline"> is</div>
+                                    <h3 class="mb-3"> What's your thought? </h3>
+                                    <div id="answer-box">
+                                        <div>I think my relationship with <div id="name2" style="display:inline">Sam
+                                            </div>
+                                            <div style="display:inline"> is</div>
+                                        </div>
+                                        <br>
+                                        <button class="decision" onClick="nextpage('positive')">Positive</button>
+                                        <button class="decision" onClick="nextpage('neutral')">Neutral</button>
+                                        <button class="decision" onClick="nextpage('negative')">Negative</button>
                                     </div>
-                                    <br>
-                                    <button class="decision" onClick="nextpage('positive')">Positive</button>
-                                    <button class="decision" onClick="nextpage('neutral')">Neutral</button>
-                                    <button class="decision" onClick="nextpage('negative')">Negative</button>
+                                    <button id="next_page" onClick="nextpage()" disabled='true'>
+                                        See the final result!
+                                    </button>
                                 </div>
                             </div>
 
