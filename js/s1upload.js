@@ -11,14 +11,14 @@ $(document).ready(function () {
 function upbtnclicked(){
     console.log("btn clicked");
     var f_name=document.getElementById("f_name").value
-    var f_data=document.getElementById("f_data").value
+    var f_date=document.getElementById("f_date").value
     var chat_log=document.getElementById("message").value
     f_name=f_name.replaceAll(/%20/g, "_");
 
     if(f_name.length>1 && chat_log.length>5){
       console.log(f_name, chat_log);
-      analyzeSentimentInText(f_name, f_data,'Neutral', chat_log)
-      location.href = "./s2control.html?name=" + f_name+"&date="+f_data;
+      analyzeSentimentInText(f_name, f_date,'Neutral', chat_log)
+      location.href = "./s2control.html?name=" + f_name+"&date="+f_date;
     }
     else{
       alert("Your input is too short!");
@@ -115,7 +115,9 @@ async function analyzeSentimentInText(name, date, user_input, text) {
     "posment": posment,
     "posneg":posneg
   });
-
+  database.ref(`${name}/${date}`).update({
+    "1":'123'
+  });
   // [END language_sentiment_gcs]
 }
 
