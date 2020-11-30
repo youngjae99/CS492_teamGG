@@ -13,7 +13,7 @@ function upbtnclicked(){
 
     if(f_name.length>1 && chat_log.length>5){
       console.log(f_name, chat_log);
-      location.href = "./s2control.html?name=" + f_name+"&date="+1111;
+      location.href = "./s2control.html?name=" + f_name+"&date="+1129;
     }
     else{
       alert("Your input is too short!");
