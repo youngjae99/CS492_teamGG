@@ -1,0 +1,19 @@
+{
+  "name": "cs492_teamgg",
+  "version": "1.0.0",
+  "description": "This is a friendship analyzer that considers both sentimental analysis by AI and user's own analysis.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/youngjae99/CS492_teamGG.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/youngjae99/CS492_teamGG/issues"
+  },
+  "homepage": "https://github.com/youngjae99/CS492_teamGG#readme"
+}
