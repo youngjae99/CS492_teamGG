@@ -18,7 +18,7 @@ function upbtnclicked(){
     if(f_name.length>1 && chat_log.length>5){
       console.log(f_name, chat_log);
       analyzeSentimentInText(f_name, f_date,'Neutral', chat_log)
-      location.href = "./s2control.html?name=" + f_name+"&date="+f_date;
+//       location.href = "./s2control.html?name=" + f_name+"&date="+f_date;
     }
     else{
       alert("Your input is too short!");
