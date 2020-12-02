@@ -1,8 +1,9 @@
 
 async function analyzeSentimentInText(name, date, user_input, text) {
-  process.env['GOOGLE_APPLICATION_CREDENTIALS'] = './gg_certif.json'
+  //process.env['GOOGLE_APPLICATION_CREDENTIALS'] = './gg_certif.json'
   // [START language_sentiment_gcs]
   // Imports the Google Cloud client library
+  console.log("entered_function");
   const language = require('@google-cloud/language');
 
   // Creates a client
@@ -15,6 +16,7 @@ async function analyzeSentimentInText(name, date, user_input, text) {
   }; 
 
   // Detects the sentiment of the document
+  console.log("log2");
   const [result] = await client.analyzeSentiment({document});
 
   const sentiment = result.documentSentiment;
@@ -39,7 +41,7 @@ async function analyzeSentimentInText(name, date, user_input, text) {
   }
 
   var results = []
-
+  console.log("log3");
   for (item of sentences){
     value = item.sentiment.score
     instance = item.text.content
@@ -65,6 +67,7 @@ async function analyzeSentimentInText(name, date, user_input, text) {
   // console.log(posment)
 
   // update to Firebase
+  console.log("log4");
   var firebase = require("firebase/app");
   require('firebase/database');
 

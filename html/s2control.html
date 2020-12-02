@@ -25,30 +25,15 @@
 
     <link rel="stylesheet" href="../assets/css/mobster.css">
     <link rel="stylesheet" href="./custom.css">
+    <link rel="stylesheet" href="./s2.css">
 
     <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-database.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    
-    <style type='text/css'>
-        #result-box {border:1px; width: 100%;height:500px;background-color:#d5d5d5 ; border-radius:10px;z-index:1;}
-        #inner-result-box {border:1px; width: 90%; position:relative; left:5%;height:480px;margin-top:20px}
-        .decision {width: 100px;height: 50px; border-radius:10px;border-color:#E5E5E5 !important;font-size:15px}
-        #next_page {width: 200px;height: 50px; border-radius:10px;background-color:#808080;margin-top:20px;font-size:15px} 
-        #status_bar {background-image: linear-gradient(to right,#dc143c, #a0e989);position:relative;left:10%;width:80%;height:20px;z-index:2;margin-top:20px}
-        #pos {display:inline; position:relative; left:70%}
-        #title {font-size:20px}
-        #neg {display:inline; position:relative; left:10%}
-        #receive-feedback {margin-top:20px}
-        td {width: 300px }
-        table {margin-top:30px;text-align:center}
-        #neg_chat {margin-top:30px}
-        #pos_chat {margin-top:30px}
-        #arrow-result {position:relative;left:50%}
-        #arrow-up { width: 0; height: 0; border-left: 10px solid transparent;border-right: 10px solid transparent;border-bottom: 20px solid #808080;}
-    </style>
-    
+
+
+
 </head>
 
 <body>
@@ -112,41 +97,67 @@
                         <div class="card-page">
                             <h3 class="mb-3">Hmm.. I think </h3>
                             <div id="everything">
+
                                 <div id="result-box">
-                                    This is my analysis on your relationship with <div id="name1"
-                                        style="display:inline">Sam</div>.
                                     <div id="inner-result-box">
                                         <div>
                                             <div style="display:flex">
-                                            <div id='neg'>Negative</div>
-                                            <div id='pos'>Positive</div>
+                                                <div id='neg'>Negative</div>
+                                                <div id='pos'>Positive</div>
                                             </div>
                                             <div id='status_bar'>
-                                        
-                                            </div>  
-                                            <div id='arrow-result'>
-                                            <div id='arrow-up'></div>
-                                            <div id='point'></div>
+
                                             </div>
-                                            <table>
-                                                <tr>
-                                                    <td>
-                                                        <div>Most negative chats</div>
-                                                        <div id='neg_chat'></div>
-                                                    </td>
-                                                    <td>
-                                                        <div>Most positive chats</div>
-                                                        <div id='pos_chat'></div>
-                                                    </td>
-                                                </tr>
-                            
-                                            </table>
-                                        
+                                            <div id='arrow-result'>
+                                                <div id='arrow-up'></div>
+                                                <div id='point'></div>
+                                            </div>
+
                                         </div>
 
 
                                     </div>
                                 </div>
+
+                                <div id="result-text-box">
+                                    This is my analysis on your relationship with <div id="name1"
+                                        style="display:inline">Sam</div>.
+                                    <br>
+                                    <div id="chatbox">
+                                        A: Is anything you can do appropriate? I cannot understand everything you did.
+                                        B: But I just followed your description...
+                                        A: I mean do this work according to the situations. Can't you understand such
+                                        small thing?
+                                        B: ....
+                                        A: Huh how do you get in that univsersity? How stupid school!
+                                        B: It's another problem, sir.
+                                        A: If you are smart enough, you should deal with today's hard work ideally.
+                                        B: However, it was my second day at here and today was very busy as you know.
+                                        A: No need to argue. You will have discounted pay for three months. I cannot pay
+                                        at all.
+                                        B: It's different what you said in the interview!
+                                        A: Because I thought you'd do better. If you don't agree, get out here.
+                                        B: what...
+                                    </div>
+
+
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <p>Modify negative threshold</p>
+                                                <input id="p_slider" type="range" min="1" max="100" value="50">
+                                                <p id="p_threshold"> 0 </p>
+                                            </td>
+                                            <td>
+                                                <p>Modify positive threshold</p>
+                                                <input id="n_slider" type="range" min="1" max="100" value="50">
+                                                <p id="n_threshold"> 0 </p>
+                                            </td>
+
+                                        </tr>
+                                    </table>
+                                </div>
+
                                 <div id="receive-feedback">
                                     <h3 class="mb-3"> What's your thought? </h3>
                                     <div id="answer-box">
@@ -186,35 +197,42 @@
     <script src="../js/s2control.js"></script>
     <!-- <script src="../js/main.js"></script> -->
     <script>
-        function apply(sel){
-    
-    firebase.database().ref('/'+targetname+'/'+date).once('value', function(snapshot) {
-        mySnapshot=snapshot.val()
-        var posneg=mySnapshot.posneg
-        var posment=mySnapshot.posment
-        var negment=mySnapshot.negment
-        var point=mySnapshot.point
-        var dic={}
-        if (typeof mySnapshot.posneg!=='undefined'){dic['posneg']=mySnapshot.posneg}
-        if (typeof mySnapshot.posment!=='undefined'){dic['posment']=mySnapshot.posment}
-        if (typeof mySnapshot.negment!=='undefined'){dic['negment']=mySnapshot.negment}
-        if (typeof mySnapshot.point!=='undefined'){dic['point']=mySnapshot.point}
-        dic['human_posneg']=sel
-        console.log(dic)
-    
-        //firebase.database().ref('/'+targetname+'/'+date).remove()
-        firebase.database().ref('/'+targetname+'/'+date).set(
-        dic
-        )
-    })
-    document.getElementById('next_page').disabled=false
-    
-    }
-    
-    function nextpage(){
-        location.href='s3result.html?name='+targetname+'&date='+date
-    }
-    
+        function apply(sel) {
+
+            firebase.database().ref('/' + targetname + '/' + date).once('value', function (snapshot) {
+                mySnapshot = snapshot.val()
+                var posneg = mySnapshot.posneg
+                var posment = mySnapshot.posment
+                var negment = mySnapshot.negment
+                var point = mySnapshot.point
+                var dic = {}
+                if (typeof mySnapshot.posneg !== 'undefined') {
+                    dic['posneg'] = mySnapshot.posneg
+                }
+                if (typeof mySnapshot.posment !== 'undefined') {
+                    dic['posment'] = mySnapshot.posment
+                }
+                if (typeof mySnapshot.negment !== 'undefined') {
+                    dic['negment'] = mySnapshot.negment
+                }
+                if (typeof mySnapshot.point !== 'undefined') {
+                    dic['point'] = mySnapshot.point
+                }
+                dic['human_posneg'] = sel
+                console.log(dic)
+
+                //firebase.database().ref('/'+targetname+'/'+date).remove()
+                firebase.database().ref('/' + targetname + '/' + date).set(
+                    dic
+                )
+            })
+            document.getElementById('next_page').disabled = false
+
+        }
+
+        function nextpage() {
+            location.href = 's3result.html?name=' + targetname + '&date=' + date
+        }
     </script>
 
 </body>
