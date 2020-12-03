@@ -20,7 +20,18 @@ This is a friendship analyzer that considers both sentimental analysis by AI and
 
 ## Features
 
-## Status
+## Dev history
+**2020.12.03**
+* changed frontend interaction : threshold slider, 
+
+**2020.12.01**
+* backend : fixed something
+
+**2020.11.30**
+* ..
+**2020.11.29**
+
+
 
 ## Contact
 ### Team GG
