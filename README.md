@@ -23,7 +23,7 @@ This is a friendship analyzer that considers both sentimental analysis by AI and
 ## Status
 
 ## Contact
-###Team GG
+### Team GG
 * 20180555 Youngjae Jang [@youngjae99](https://github.com/youngjae99)
 * 20180162 Jihyeong Hong [@zhyeong](https://github.com/zhyeong)
 * 20170773 Soyoung Yang [@dudrrm](https://github.com/dudrrm)
