@@ -1,5 +1,5 @@
 # U&I - AI Relationship analyzer
-> KAIST CS473 Introduction to Social Computing Design Project - CS492_teamGG
+> KAIST CS492  HUMAN-AI INTERACTION Design Project - CS492_teamGG
 
 ## General info
 This is a friendship analyzer that considers both sentimental analysis by AI and user's own analysis.
