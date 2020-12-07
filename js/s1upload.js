@@ -34,7 +34,10 @@ function upbtnclicked(){
       error: function(request, status, error){
         console.log('ajax error...', request, status, error);
       }
-    }) 
+    })
+
+    //페이지 이동
+    location.href = "./s2control.html?name=" + f_name+"&date="+f_date;
   }
   else{
     alert("Your input is too short!");

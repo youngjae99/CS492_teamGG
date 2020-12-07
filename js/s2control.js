@@ -37,68 +37,63 @@ document.addEventListener("DOMContentLoaded", function (event) {
   document.getElementById("name2").innerHTML = targetname;
 
   var choice;
-  var snntenceList, scoreList;
+  var sentenceList, scoreList;
   // firebase.database().ref().set({Sam:{1129:{'point':0.75,'posneg':'positive','posment':{1:'pos1',2:'pos2'},'negment':{1:'neg1',2:'neg2'}}}})
 
+  console.log("targetname:", targetname);
+  console.log("date:", date);
   firebase
     .database()
     .ref("/" + targetname + "/" + date)
     .once("value", function (snapshot) {
       mySnapshot = snapshot.val();
-      var posment = mySnapshot.posment;
-      var negment = mySnapshot.negment;
-      var point = mySnapshot.point;
-      sentenceList = mySnapshot.sentsco;
-      scoreList = mySnapshot.sentscore;
+      scoreList = mySnapshot.scores;
+      sentenceList = mySnapshot.sentences;
+    }).then(apply);
+  
 
-      var inposment = posment[1] + "<br><br>" + posment[2];
-      var innegment = negment[1] + "<br><br>" + negment[2];
-      document.getElementById("neg_chat").innerHTML = innegment;
-      document.getElementById("pos_chat").innerHTML = inposment;
-      var num = point * 40;
-      document.getElementById("arrow-result").style.left = 40 + num + "%";
-      document.getElementById("point").innerHTML = point;
-    });
+  function apply() {
+    console.log("in apply", sentenceList);
+    var chatbox = document.getElementById("chatbox");
 
-  function apply(sel) {
-    firebase
-      .database()
-      .ref("/" + targetname + "/" + date)
-      .once("value", function (snapshot) {
-        mySnapshot = snapshot.val();
-        var posneg = mySnapshot.posneg;
-        var posment = mySnapshot.posment;
-        var negment = mySnapshot.negment;
-        var point = mySnapshot.point;
-
-        var dic = {};
-        if (typeof mySnapshot.posneg !== "undefined") {
-          dic["posneg"] = mySnapshot.posneg;
-        }
-        if (typeof mySnapshot.posment !== "undefined") {
-          dic["posment"] = mySnapshot.posment;
-        }
-        if (typeof mySnapshot.negment !== "undefined") {
-          dic["negment"] = mySnapshot.negment;
-        }
-        if (typeof mySnapshot.point !== "undefined") {
-          dic["point"] = mySnapshot.point;
-        }
-        dic["human_posneg"] = sel;
-        console.log(dic);
-
-        //firebase.database().ref('/'+targetname+'/'+date).remove()
-        firebase
-          .database()
-          .ref("/" + targetname + "/" + date)
-          .set(dic);
-      });
-    document.getElementById("next_page").disabled = false;
+    for (i = 0; i < sentenceList.length; i++){
+      $('<mark id="m'+i+'">'+sentenceList[i]+'</mark>').appendTo("#chatbox");
+    }
+    changeColor();
   }
 
   function nextpage() {
     location.href =
       "Result_page_first.html?name=" + targetname + "&date=" + date;
+  }
+
+  var neg_part=0.5;
+  var pos_part=-0.5;
+
+
+  function changeColor(){
+    var p_slider = document.getElementById("p_slider");
+    var p_threshold = (parseInt(p_slider.value)-50); // 긍정 threshold
+    var n_slider = document.getElementById("n_slider");
+    var n_threshold = (parseInt(n_slider.value)-50); // 부정 threshold
+
+    //partition change
+    neg_part = -0.5 - n_threshold*0.01;    
+    pos_part = 0.5 + p_threshold*0.01;
+
+    for (i = 0; i < scoreList.length; i++) {
+        var elem_id = "m" + i;
+        var token = document.getElementById(elem_id);
+        if(scoreList[i]>pos_part){
+          token.style.color = "green";
+        }
+        else if(scoreList[i]<neg_part){
+          token.style.color = "red";
+        }
+        else{
+          token.style.color = "silver";
+        }
+    } 
   }
 
   // firebase.database().ref().set({Sam:{1129:{'posneg':'positive','posment':{1:'pos1',2:'pos2'},'negment':{1:'neg1',2:'neg2'}}}})
@@ -109,6 +104,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
   // Update the current slider value (each time you drag the slider handle)
   p_slider.oninput = function () {
     p_threshold.innerHTML = (parseInt(this.value)-50);
+    changeColor();
+    //console.log("after firebase get :", scoreList, sentenceList );
   };
 
   var n_slider = document.getElementById("n_slider");
@@ -117,5 +114,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
   // Update the current slider value (each time you drag the slider handle)
   n_slider.oninput = function () {
     n_threshold.innerHTML = (parseInt(this.value)-50);
+    changeColor();
+    //console.log("after firebase get :", scoreList, sentenceList );
   };
 });

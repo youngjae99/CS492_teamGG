@@ -128,3 +128,34 @@ table {
     border-right: 10px solid transparent;
     border-bottom: 20px solid #808080;
 }
+
+
+mark{
+    color: black;
+    background: none;
+}
+
+mark.red {
+    color:#ff0000;
+    background: none;
+}
+
+mark.blue {
+    color:#0000A0;
+    background: none;
+}
+
+mark.p1{
+    color:#00ff44;
+    background: none;
+}
+
+mark.p2{
+    color:#8cff00;
+    background: none;
+}
+
+mark.p3{
+    color:#aeff00;
+    background: none;
+}
