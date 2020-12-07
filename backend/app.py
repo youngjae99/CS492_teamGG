@@ -6,27 +6,55 @@ import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
 
+# from http.server import HTTPServer, SimpleHTTPRequestHandler, test
+# import sys
+
+# class CORSRequestHandler (SimpleHTTPRequestHandler):
+#     def end_headers (self):
+#         self.send_header('Access-Control-Allow-Origin', '*')
+#         SimpleHTTPRequestHandler.end_headers(self)
+
 app = Flask(__name__)
 CORS(app)
-#app.config['CORS_ALLOW_HEADERS'] = 'Content-Type'
+app.config['CORS_ALLOW_HEADERS'] = 'Content-Type'
 
 @app.route('/')
-#@cross_origin()
+@cross_origin()
 def index(): 
-    # my_res = flask.Response()
-    # http_method = flask.request.method
-    # print(http_method)
-    # if http_method == "OPTIONS":
-    #     my_res.headers.add("Access-Control-Allow-Origin", "*.html")
-    #     my_res.headers.add('Access-Control-Allow-Headers', "*.html")
-    return render_template('index.html')
+    print('index')
+    my_res = flask.Response("차단?")
+ 
+    http_method = flask.request.method
+    my_res.headers.add("Access-Control-Allow-Origin", "*")
+    my_res.headers.add('Access-Control-Allow-Headers', "*")
+    my_res.headers.add('Access-Control-Allow-Methods', "POST,GET")
+ 
+    if http_method == "OPTIONS": # 사전요청
+        print("--사전 요청(Preflight Request)--")
+        my_res.headers.add("Access-Control-Allow-Origin", "*")
+        my_res.headers.add('Access-Control-Allow-Headers', "*")
+        my_res.headers.add('Access-Control-Allow-Methods', "GET,DELETE")
+    elif http_method == "GET": # 실제요청
+        print("--실제 요청--")
+        my_res.headers.add("Access-Control-Allow-Origin", "*")
+        my_res.set_data("가져왔지롱")
+    elif http_method == "DELETE": # 실제요청
+        print("--실제 요청--")
+        my_res.headers.add("Access-Control-Allow-Origin", "*")
+        my_res.set_data("삭제했지롱")
+    else: 
+        print("요구하지 않은 HTTP METHOD(" + http_method + ")입니다.")       
+    
+    return my_res, render_template('index.html')
 
 # @app.route("/login")
 # def login():
 #   return jsonify({'success': 'ok'})
 
 @app.route("/gg_backend", methods=['POST'])
+@cross_origin
 def ajax():
+    print('ajax')
     try:
         # preprocess data from front-end
         print('testsgo')
@@ -83,6 +111,7 @@ def ajax():
 
 
 if __name__ == "__main__":
+    test(CORSRequestHandler, HTTPServer, port=int(sys.argv[1]) if len(sys.argv) > 1 else 8000)
     app.run(host='0.0.0.0', port=60008, debug=True)
   
     
