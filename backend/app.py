@@ -19,48 +19,50 @@ CORS(app)
 app.config['CORS_ALLOW_HEADERS'] = 'Content-Type'
 
 @app.route('/')
-@cross_origin()
+@cross_origin
 def index(): 
     print('index')
-    my_res = flask.Response("차단?")
+    # my_res = flask.Response("차단?")
  
-    http_method = flask.request.method
-    my_res.headers.add("Access-Control-Allow-Origin", "*")
-    my_res.headers.add('Access-Control-Allow-Headers', "*")
-    my_res.headers.add('Access-Control-Allow-Methods', "POST,GET")
+    # http_method = flask.request.method
+    # my_res.headers.add("Access-Control-Allow-Origin", "*")
+    # my_res.headers.add('Access-Control-Allow-Headers', "*")
+    # my_res.headers.add('Access-Control-Allow-Methods', "POST,GET")
  
-    if http_method == "OPTIONS": # 사전요청
-        print("--사전 요청(Preflight Request)--")
-        my_res.headers.add("Access-Control-Allow-Origin", "*")
-        my_res.headers.add('Access-Control-Allow-Headers', "*")
-        my_res.headers.add('Access-Control-Allow-Methods', "GET,DELETE")
-    elif http_method == "GET": # 실제요청
-        print("--실제 요청--")
-        my_res.headers.add("Access-Control-Allow-Origin", "*")
-        my_res.set_data("가져왔지롱")
-    elif http_method == "DELETE": # 실제요청
-        print("--실제 요청--")
-        my_res.headers.add("Access-Control-Allow-Origin", "*")
-        my_res.set_data("삭제했지롱")
-    else: 
-        print("요구하지 않은 HTTP METHOD(" + http_method + ")입니다.")       
+    # if http_method == "OPTIONS": # 사전요청
+    #     print("--사전 요청(Preflight Request)--")
+    #     my_res.headers.add("Access-Control-Allow-Origin", "*")
+    #     my_res.headers.add('Access-Control-Allow-Headers', "*")
+    #     my_res.headers.add('Access-Control-Allow-Methods', "GET,DELETE")
+    # elif http_method == "GET": # 실제요청
+    #     print("--실제 요청--")
+    #     my_res.headers.add("Access-Control-Allow-Origin", "*")
+    #     my_res.set_data("가져왔지롱")
+    # elif http_method == "DELETE": # 실제요청
+    #     print("--실제 요청--")
+    #     my_res.headers.add("Access-Control-Allow-Origin", "*")
+    #     my_res.set_data("삭제했지롱")
+    # else: 
+    #     print("요구하지 않은 HTTP METHOD(" + http_method + ")입니다.")       
+    # return render_template('s1upload.html')
     
-    return my_res, render_template('index.html')
+    return render_template('s1upload.html')
 
 # @app.route("/login")
 # def login():
 #   return jsonify({'success': 'ok'})
 
-@app.route("/gg_backend", methods=['POST'])
-@cross_origin
+@app.route("/gg_backend", methods = ['POST'])
 def ajax():
-    print('ajax')
+    global i 
+    print('ajax', i)
+    
     try:
         # preprocess data from front-end
         print('testsgo')
         print(request.data)
         data = request.get_json()
-        print('test', data, flush=True)
+        # print('test', data, flush=True)
     except Exception as e:
         print(e)
         raise e
@@ -102,16 +104,18 @@ def ajax():
     
     # upadte to firebase
     cred = credentials.Certificate('./firebase_key.json')
-    firebase_admin.initialize_app(cred, {'databaseURL': 'https://hai-gg-f140f.firebaseio.com/'})
+    if i == 1:
+        firebase_admin.initialize_app(cred, {'databaseURL': 'https://hai-gg-f140f.firebaseio.com/'})
     dir = db.reference(f'{name}/{date}')
     dir.update(results)
 
-    print('done')
+    print('done', i)
+    i+=1
     return 'OK'
 
 
 if __name__ == "__main__":
-    test(CORSRequestHandler, HTTPServer, port=int(sys.argv[1]) if len(sys.argv) > 1 else 8000)
-    app.run(host='0.0.0.0', port=60008, debug=True)
+    i = 1
+    app.run(host='0.0.0.0', port=60009)
   
     

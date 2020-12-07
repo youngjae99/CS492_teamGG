@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/youngjae99/CS492_teamGG/issues"
   },
-  "homepage": "https://github.com/youngjae99/CS492_teamGG#readme"
+  "homepage": "https://github.com/youngjae99/CS492_teamGG#readme",
+  "dependencies": {
+    "browserify": "^17.0.0"
+  }
 }
