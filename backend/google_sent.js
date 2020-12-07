@@ -1,6 +1,6 @@
 
 async function analyzeSentimentInText(name, date, user_input, text) {
-  //process.env['GOOGLE_APPLICATION_CREDENTIALS'] = './gg_certif.json'
+  process.env['GOOGLE_APPLICATION_CREDENTIALS'] = './gg_certif.json'
   // [START language_sentiment_gcs]
   // Imports the Google Cloud client library
   console.log("entered_function");
@@ -97,5 +97,6 @@ async function analyzeSentimentInText(name, date, user_input, text) {
 
 // for test
 // var fs = require("fs");
-// var text = fs.readFileSync("CS492_teamGG/text_test/Father.txt").toString('utf-8');
-// analyzeSentimentInText('Father', '1130', 'neutral', text)
+// var text = fs.readFileSync("../dataset/B.txt").toString('utf-8');
+// analyzeSentimentInText('inserver_821', '1130', 'neutral', text)
+module.exports = analyzeSentimentInText
