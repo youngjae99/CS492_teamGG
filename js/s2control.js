@@ -57,6 +57,12 @@ document.addEventListener("DOMContentLoaded", function (event) {
     var chatbox = document.getElementById("chatbox");
 
     for (i = 0; i < sentenceList.length; i++){
+      
+      if(i!=0 && (sentenceList[i].startsWith('A:') || sentenceList[i].startsWith('B:')))
+      {
+        console.log("break line - ", sentenceList[i]);
+        $('<br/>').appendTo("#chatbox");
+      }
       $('<mark id="m'+i+'">'+sentenceList[i]+'</mark>').appendTo("#chatbox");
     }
     changeColor();
@@ -85,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         var elem_id = "m" + i;
         var token = document.getElementById(elem_id);
         if(scoreList[i]>pos_part){
-          token.style.color = "green";
+          token.style.color = "forestgreen";
         }
         else if(scoreList[i]<neg_part){
           token.style.color = "red";
