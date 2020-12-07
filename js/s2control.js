@@ -104,6 +104,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
   // Update the current slider value (each time you drag the slider handle)
   p_slider.oninput = function () {
     p_threshold.innerHTML = (parseInt(this.value)-50);
+    p_threshold2.innerHTML = 0.5 + (parseInt(this.value)-50)*0.01;
     changeColor();
     //console.log("after firebase get :", scoreList, sentenceList );
   };
@@ -114,6 +115,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
   // Update the current slider value (each time you drag the slider handle)
   n_slider.oninput = function () {
     n_threshold.innerHTML = (parseInt(this.value)-50);
+    n_threshold2.innerHTML = -0.5 - (parseInt(this.value)-50)*0.01;
     changeColor();
     //console.log("after firebase get :", scoreList, sentenceList );
   };
