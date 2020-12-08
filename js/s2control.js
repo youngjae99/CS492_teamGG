@@ -49,23 +49,49 @@ document.addEventListener("DOMContentLoaded", function (event) {
       mySnapshot = snapshot.val();
       scoreList = mySnapshot.scores;
       sentenceList = mySnapshot.sentences;
+      point=mySnapshot.point;
+      // document.getElementById("neg_chat").innerHTML=negment[1]+"<br><br>"+negment[2];
+      // document.getElementById("pos_chat").innerHTML=posment[1]+"<br><br>"+posment[2];
+      document.getElementById("arrow-result").style.left=40+point*40+"%";
+      document.getElementById("point").innerHTML=point;
     }).then(apply);
   
+  function removeItemOnce(arr, value) {
+      var index = arr.indexOf(value);
+      if (index > -1) {
+        arr.splice(index, 1);
+      }
+      return arr;
+    }
 
   function apply() {
     console.log("in apply", sentenceList);
+    console.log(Math.max(...scoreList))
+    
+    max1=Math.max(...scoreList)
+    pos1=sentenceList[scoreList.indexOf(max1)]
+    scoreListcopy=[...scoreList]
+    removeItemOnce(scoreListcopy,max1)
+    max2=Math.max(...scoreListcopy)
+    pos2=sentenceList[scoreList.indexOf(max2)]
+    
+    document.getElementById("pos_chat").innerHTML=pos1+'<br><br>'+pos2  
     var chatbox = document.getElementById("chatbox");
 
+    min1=Math.min(...scoreList)
+    neg1=sentenceList[scoreList.indexOf(min1)]
+    scoreListcopy_forneg=[...scoreList]
+    removeItemOnce(scoreListcopy_forneg,min1)
+    min2=Math.min(...scoreListcopy_forneg)
+    neg2=sentenceList[scoreList.indexOf(min2)]
+    
+    document.getElementById("neg_chat").innerHTML=neg1+'<br><br>'+neg2  
+    var chatbox = document.getElementById("chatbox");
+    
     for (i = 0; i < sentenceList.length; i++){
-      
-      if(i!=0 && (sentenceList[i].startsWith('A:') || sentenceList[i].startsWith('B:')))
-      {
-        console.log("break line - ", sentenceList[i]);
-        $('<br/>').appendTo("#chatbox");
-      }
-      $('<mark id="m'+i+'">'+sentenceList[i]+'</mark>').appendTo("#chatbox");
+      $('<mark id="m'+i+'">'+sentenceList[i]+'</mark>'+'<br>').appendTo("#chatbox");
     }
-    changeColor();
+    // changeColor();
   }
 
   function nextpage() {
@@ -91,7 +117,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         var elem_id = "m" + i;
         var token = document.getElementById(elem_id);
         if(scoreList[i]>pos_part){
-          token.style.color = "forestgreen";
+          token.style.color = "green";
         }
         else if(scoreList[i]<neg_part){
           token.style.color = "red";
