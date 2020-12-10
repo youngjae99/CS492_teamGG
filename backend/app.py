@@ -52,7 +52,7 @@ def index():
 # def login():
 #   return jsonify({'success': 'ok'})
 
-@app.route("/gg_backend", methods = ['POST'])
+@app.route("/gg_backend_m2", methods = ['POST'])
 def ajax():
     global i 
     print('ajax', i)
@@ -72,7 +72,7 @@ def ajax():
     textData = data['text']
 
     # load google language api
-    client = language.LanguageServiceClient.from_service_account_json("./gg_certif.json")
+    client = language.LanguageServiceClient.from_service_account_json("./key/gg_certif.json")
     
     type_ = language.Document.Type.PLAIN_TEXT
     document = {"content": textData, "type_": type_, "language": "en"}
@@ -103,7 +103,7 @@ def ajax():
     results = {'humand_posneg': user_input, 'point': doc_score, 'posneg': posneg, 'sentences': sent_conts, 'scores': sent_scores}
     
     # upadte to firebase
-    cred = credentials.Certificate('./firebase_key.json')
+    cred = credentials.Certificate("./key/firebase_key.json")
     if i == 1:
         firebase_admin.initialize_app(cred, {'databaseURL': 'https://hai-gg-f140f.firebaseio.com/'})
     dir = db.reference(f'{name}/{date}')
@@ -116,6 +116,6 @@ def ajax():
 
 if __name__ == "__main__":
     i = 1
-    app.run(host='0.0.0.0', port=60009)
+    app.run(host='0.0.0.0', port=60005)
   
     

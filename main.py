@@ -40,11 +40,11 @@ class Application(tornado.web.Application):
         handlers = [
             (r"/", MainHandler),
             (r"/(ajax)$", AjaxHandler),
-            (r"/(.*)", tornado.web.StaticFileHandler, {'path': '../gg_project_master'})
+            (r"/(.*)", tornado.web.StaticFileHandler, {'path': '../CS492_teamGG'})
         ]
         settings = dict(
             debug=True,
-            template_path=os.path.join(os.path.dirname(__file__), "templates"),
+            template_path=os.path.join(os.path.dirname(__file__), "html"),
             static_path=os.path.join(os.path.dirname(__file__), "tornado_static")
         )
         tornado.web.Application.__init__(self, handlers, **settings)
@@ -53,8 +53,8 @@ def main():
     """start server"""
     tornado.options.parse_command_line()
     app = Application()
-    app.listen(60010)
-    print('serving...')
+    app.listen(60006)
+    print('serving milestone2...')
     tornado.ioloop.IOLoop.instance().start()
  
 if __name__ == "__main__":
