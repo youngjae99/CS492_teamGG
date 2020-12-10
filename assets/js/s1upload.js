@@ -24,7 +24,7 @@ function upbtnclicked(){
     };
     $.ajax({
       type: 'POST',
-      url: "http://143.248.159.126:60008/",
+      url: "/gg_backend",
       data: JSON.stringify(postdata),
       dataType: 'JSON',
       contentType: "application/json",
