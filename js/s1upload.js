@@ -50,6 +50,7 @@
 //   // [END language_sentiment_gcs]
 // }
 
+
 $(document).ready(function () {
   var uploadbtn = document.getElementById("upbtn");
   uploadbtn.onkeypress = function () {
@@ -57,6 +58,28 @@ $(document).ready(function () {
   };
 });
 
+function getParam(sname) {
+  var params = location.search.substr(location.search.indexOf("?") + 1);
+  var sval = "";
+  params = params.split("&");
+  for (var i = 0; i < params.length; i++) {
+    temp = params[i].split("=");
+
+    if ([temp[0]] == sname) {
+      sval = temp[1];
+    }
+  }
+  return sval;
+}
+
+pos=getParam('pos')
+neg=getParam('neg')
+
+var pre_human_posneg=""
+function apply(decision){
+  document.getElementById("upbtn").disabled=false
+  pre_human_posneg=decision
+}
 function upbtnclicked(){
   console.log("btn clicked");
 
@@ -71,7 +94,8 @@ function upbtnclicked(){
       name: f_name, 
       date: f_date, 
       user_input: 'Neutral', 
-      text: chat_log
+      text: chat_log,
+      pre_human_posneg : pre_human_posneg
     };
     $.ajax({
       type: 'POST',
@@ -88,7 +112,7 @@ function upbtnclicked(){
     })
 
     //페이지 이동
-    location.href = "./s2control.html?name=" + f_name+"&date="+f_date;
+    location.href = "./s2control.html?name=" + f_name+"&date="+f_date+"pos"+pos+"neg"+neg;
   }
   else{
     alert("Your input is too short!");

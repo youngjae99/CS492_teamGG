@@ -62,10 +62,7 @@ function randomize(){
 
 function next(){
   console.log("btn clicked");
-  location.href="./s0_customize_1_pos.html?neg=" +document.getElementById('threshold').innerHTML.split('.')[1]
-
-  
-
+  location.href="./s0customize_1_pos.html?neg=" +document.getElementById('threshold').innerHTML.split('.')[1]
  
 };
 
