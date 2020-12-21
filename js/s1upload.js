@@ -113,6 +113,7 @@ function upbtnclicked(){
       text: chat_log,
       pre_human_posneg : pre_human_posneg
     };
+    /*
     $.ajax({
       type: 'POST',
       url: "http://143.248.159.124:60011/gg_backend",
@@ -126,14 +127,14 @@ function upbtnclicked(){
         console.log('ajax error...', request, status, error);
         //alert("no!");
       }
-    })
+    })*/
 
     //페이지 이동
     document.getElementById("waitmsg").innerHTML = "Uploading... wait a second...";
     setTimeout(() => {
       location.href = "./s2control.html?name=" + f_name+"&date="+f_date+"&pos="+pos+"&neg="+neg;
       document.body.style.cursor = 'wait';
-    }, 2000);
+    }, 1000);
     //location.href = "./s2control.html?name=" + f_name+"&date="+f_date+"&pos="+pos+"&neg="+neg;
   }
   else{
