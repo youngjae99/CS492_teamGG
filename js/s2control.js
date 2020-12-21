@@ -29,7 +29,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
     }
     return sval;
   }
-
+  pos=getParam('pos');
+  neg=getParam('neg');
+  
   targetname = getParam("name");
   date = getParam("date");
 

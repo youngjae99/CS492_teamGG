@@ -25,8 +25,9 @@
   <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-analytics.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-database.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="../js/s1upload.js"></script>
-  
+  <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js"></script>
+  <script src="../js/s0_customize_0_neg.js"></script>
+
 </head>
 <body>
 
@@ -66,7 +67,7 @@
     <div class="container fg-white h-100">
       <div class="row justify-content-center align-items-center text-center h-100">
         <div class="col-lg-6">
-          <h3 class="mb-3 fw-medium">Step 1. Upload your chat log</h3>
+          <h3 class="mb-3 fw-medium">Step 0. Get friendly with our analyzer.</h3>
         </div>
       </div>
     </div>
@@ -78,19 +79,21 @@
     <div class="row justify-content-center">
       <div class="col-lg-8">
         <div class="card-page">
-          <h3 class="mb-3">Upload your chatlog with friend</h3>
+          <h3 class="mb-3">Find your own thresholds.</h3>
  
-          <p>Please enter the conversation with the name of friend in the format below</p>
+          <p>Look at the sample inputs and analyzed results from our service. </p>
+          <p>Then, tell us at which level the comments get negative or positive to you.</p>
+          <p>First, find out your 'negative' threshold. </p>
 
-          <h5>Chat log Format</h5>
-          <ul class="theme-list">
+          <!-- <h5>Chat log Format</h5> -->
+          <!-- <ul class="theme-list">
             <li class="list-item">A: Hello mike! nice to meet you</li>
             <li class="list-item">B: Why do you always tell me like that!? :(</li>
             <li class="list-item">A: Great work!</li>
             <li class="list-item">B: Life is what happens when you're busy making other plans</li>
-          </ul>
+          </ul> -->
           
-          <div>
+          <!-- <div>
             <div class="form-group wow fadeInUp">
                 <label for="email" class="fw-medium fg-grey">Friend's name</label>
                 <input type="text" class="form-control" id="f_name"/>
@@ -99,33 +102,30 @@
             <div class="form-group wow fadeInUp">
               <label for="email" class="fw-medium fg-grey">Date (November 29th -> 1129)</label>
               <input type="text" class="form-control" id="f_date"/>
-            </div>
+            </div> -->
 
-            <div class="form-group wow fadeInUp">
-                <label for="message" class="fw-medium fg-grey">Chat log</label>
-                <textarea rows="6" class="form-control" id="message"></textarea>
+            <div class="form-group wow fadeInUp" id='big square'>
+              <table style="width:100%">
+              <tr style="width:100%">
+              <td style="width:70%"><center><label for="message" class="fw-medium fg-grey" id="sample_texts">And then what.</label></center></td>
+              <td><button class="btn btn-primary" style="margin-bottom:3%; background-color:grey" onclick="randomize()"><i class="fas fa-random"></i></button></td>
+              <td>
+                <center>
+                <button class="btn btn-primary" style="margin-bottom:3%; background-color:grey"  onclick="uparrow()"><i class="fas fa-caret-up"></i></button>
+                <br>
+                <div id="threshold">-0.2</div>
+                <br>
+                <button class="btn btn-primary"  style="margin-bottom:3%; background-color:grey" onclick="downarrow()"><i class="fas fa-caret-down"></i></button>
+              </center>
+              </td>
+              </tr>
+              </table>  
             </div>
-
-            <center>
-            <div id="receive-feedback">
-              <h3 class="mb-3"> What's your thought? </h3>
-              <div id="answer-box">
-                  <div>I think my relationship with <div id="name2" style="display:inline">Sam
-                      </div>
-                      <div style="display:inline"> is</div>
-                  </div>
-                  <br>
-                  <button class="btn btn-primary" style="background-color:lightcoral"onClick="apply('positive')">Positive</button>
-                  <button class="btn btn-primary"style="background-color:lightcoral"onClick="apply('neutral')">Neutral</button>
-                  <button class="btn btn-primary" style="background-color:lightcoral"onClick="apply('negative')">Negative</button>
-              </div>
-          </div>
-        
+            <p>When the comment is on border of negative and neutral, click "Threshold found." </p>
 
             <div class="form-group mt-4 wow fadeInUp">
-                <button class="btn btn-primary" id="upbtn" onclick="upbtnclicked()" disabled=True>Upload</button>
+                <center><button class="btn btn-primary" id="upbtn" onclick="next()">Threshold found</button></center>
             </div>
-          </center>
           </div>
         </div>
       </div>
