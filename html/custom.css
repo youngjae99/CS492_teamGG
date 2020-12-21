@@ -62,14 +62,6 @@ td {
 }
 
 
-#next_page {
-    width: 200px;
-    height: 50px;
-    border-radius: 10px;
-    background-color: #808080;
-    margin-top: 20px;
-    font-size: 15px
-}
 
 #status_bar {
     background-image: linear-gradient(to right, #dc143c, #a0e989);
@@ -158,4 +150,19 @@ mark.p2{
 mark.p3{
     color:#aeff00;
     background: none;
+}
+
+#threshold{
+    font-size: 30px;
+    font-weight: bold;
+    color:black;
+    height: 70px;
+    padding-top: 10px;
+    vertical-align: middle;
+}
+
+#sample_texts{
+    font-weight: 700;
+    font-size: 25px;
+    color:dimgray;
 }

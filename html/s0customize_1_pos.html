@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,9 +20,11 @@
   <link rel="stylesheet" href="../assets/css/bootstrap.css">
 
   <link rel="stylesheet" href="../assets/css/mobster.css">
+  <link rel="stylesheet" href="./custom.css">
+
 
   <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-app.js"></script> 
+  <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-analytics.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-database.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -29,20 +32,22 @@
   <script src="../js/s0_customize_1_pos.js"></script>
 
 </head>
+
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark navbar-floating">
-  <div class="container">
-    <a class="navbar-brand" href="index.html">
-      <img src="../assets/favicon-light.png" alt="" width="40">
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  
-    <div class="collapse navbar-collapse" id="navbarToggler">
-      <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-        <!-- <li class="nav-item">
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-floating">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="../assets/favicon-light.png" alt="" width="40">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler"
+        aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarToggler">
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+          <!-- <li class="nav-item">
           <p class="nav-link" href="about.html">About</p>
         </li>
         <li class="nav-item">
@@ -54,44 +59,44 @@
         <li class="nav-item">
           <p class="nav-link" href="contact.html">Contact</p>
         </li> -->
-      </ul>
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
 
-<div class="bg-light">
+  <div class="bg-light">
 
-<div class="page-hero-section bg-image hero-mini" style="background-image: url(../assets/img/hero_mini.svg);">
-  <div class="hero-caption">
-    <div class="container fg-white h-100">
-      <div class="row justify-content-center align-items-center text-center h-100">
-        <div class="col-lg-6">
-          <h3 class="mb-3 fw-medium">Step 0. Get friendly with our analyzer.</h3>
+    <div class="page-hero-section bg-image hero-mini" style="background-image: url(../assets/img/hero_mini.svg);">
+      <div class="hero-caption">
+        <div class="container fg-white h-100">
+          <div class="row justify-content-center align-items-center text-center h-100">
+            <div class="col-lg-6">
+              <h3 class="mb-3 fw-medium">Step 0. Get friendly with our analyzer.</h3>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
 
-<div class="page-section">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-8">
-        <div class="card-page">
-          <h3 class="mb-3">Find your own thresholds.</h3>
- 
-          <p>Now,find out your 'positive' threshold. </p>
+    <div class="page-section">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="card-page">
+              <h3 class="mb-3">Find your own thresholds.</h3>
 
-          <!-- <h5>Chat log Format</h5> -->
-          <!-- <ul class="theme-list">
+              <p style="font-weight: 600;">Now,find out your 'positive' threshold. </p>
+
+              <!-- <h5>Chat log Format</h5> -->
+              <!-- <ul class="theme-list">
             <li class="list-item">A: Hello mike! nice to meet you</li>
             <li class="list-item">B: Why do you always tell me like that!? :(</li>
             <li class="list-item">A: Great work!</li>
             <li class="list-item">B: Life is what happens when you're busy making other plans</li>
           </ul> -->
-          
-          <!-- <div>
+
+              <!-- <div>
             <div class="form-group wow fadeInUp">
                 <label for="email" class="fw-medium fg-grey">Friend's name</label>
                 <input type="text" class="form-control" id="f_name"/>
@@ -102,48 +107,63 @@
               <input type="text" class="form-control" id="f_date"/>
             </div> -->
 
-            <div class="form-group wow fadeInUp" id='big square'>
-              <table style="width:100%">
-              <tr style="width:100%">
-              <td style="width:70%"><center><label for="message" class="fw-medium fg-grey" id="sample_texts">I saw you in my dreams.</label></center></td>
-              <td><button class="btn btn-primary" style="margin-bottom:3%; background-color:grey" onclick="randomize()"><i class="fas fa-random"></i></button></td>
-              <td>
-                <center>
-                <button class="btn btn-primary" style="margin-bottom:3%; background-color:grey"  onclick="uparrow()"><i class="fas fa-caret-up"></i></button>
-                <br>
-                <div id="threshold">0.6</div>
-                <br>
-                <button class="btn btn-primary"  style="margin-bottom:3%; background-color:grey" onclick="downarrow()"><i class="fas fa-caret-down"></i></button>
-              </center>
-              </td>
-              </tr>
-              </table>  
-            </div>
-            <p>When the comment is on border of negative and neutral, click "Threshold found." </p>
+              <div class="form-group wow fadeInUp" id='big square'>
+                <table style="width:100%">
+                  <tr style="width:100%">
+                    <td>
+                      <table>
+                        <tr>
+                          <button class="btn btn-primary" style="margin-bottom:3%; background-color:grey"
+                            onclick="downarrow()"><i class="fas fa-caret-up"></i></button>
+                        </tr>
+                        <tr>
+                          <div id="threshold">0.0</div>
+                        </tr>
+                        <tr>
+                          <button class="btn btn-primary" style="margin-bottom:3%; background-color:grey"
+                            onclick="uparrow()"><i class="fas fa-caret-down"></i></button>
+                        </tr>
+                      </table>
 
-            <div class="form-group mt-4 wow fadeInUp">
-                <center><button class="btn btn-primary" id="upbtn" onclick="upbtnclicked()">Threshold found</button></center>
+                    </td>
+                    <td style="width:70%">
+
+                      <center><label for="message" class="fw-medium fg-grey" id="sample_texts">And then what.</label>
+                      </center>
+                    </td>
+                    <td><button class="btn btn-primary" style="margin-bottom:3%; background-color:grey"
+                        onclick="randomize()"><i class="fas fa-random"></i></button></td>
+
+                  </tr>
+                </table>
+              </div>
+              <p>When the comment is on border of negative and neutral, click "Threshold found." </p>
+
+              <div class="form-group mt-4 wow fadeInUp">
+                <center><button class="btn btn-primary" id="upbtn" onclick="upbtnclicked()">Threshold found</button>
+                </center>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-</div>
+  </div>
 
-<script src="../assets/js/jquery-3.5.1.min.js"></script>
+  <script src="../assets/js/jquery-3.5.1.min.js"></script>
 
-<script src="../assets/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/bootstrap.bundle.min.js"></script>
 
-<script src="../assets/vendor/owl-carousel/js/owl.carousel.min.js"></script>
+  <script src="../assets/vendor/owl-carousel/js/owl.carousel.min.js"></script>
 
-<script src="../assets/vendor/wow/wow.min.js"></script>
+  <script src="../assets/vendor/wow/wow.min.js"></script>
 
-<script src="../assets/js/mobster.js"></script>
+  <script src="../assets/js/mobster.js"></script>
 
-<script src="../js/main.js"></script>
+  <script src="../js/main.js"></script>
 
 </body>
+
 </html>
