@@ -78,8 +78,24 @@ neg=getParam('neg')
 var pre_human_posneg=""
 function apply(decision){
   document.getElementById("upbtn").disabled=false
+  if(decision=="positive"){
+    document.getElementById("btn_1").style.backgroundColor="red";
+    document.getElementById("btn_2").style.backgroundColor="lightcoral";
+    document.getElementById("btn_3").style.backgroundColor="lightcoral";
+  }
+  else if(decision=="neutral"){
+    document.getElementById("btn_1").style.backgroundColor="lightcoral";
+    document.getElementById("btn_2").style.backgroundColor="red";
+    document.getElementById("btn_3").style.backgroundColor="lightcoral";
+  }
+  else if(decision=="negative"){
+    document.getElementById("btn_1").style.backgroundColor="lightcoral";
+    document.getElementById("btn_2").style.backgroundColor="lightcoral";
+    document.getElementById("btn_3").style.backgroundColor="red";
+  }
   pre_human_posneg=decision
 }
+
 function upbtnclicked(){
   console.log("btn clicked");
 
@@ -108,6 +124,7 @@ function upbtnclicked(){
       },
       error: function(request, status, error){
         console.log('ajax error...', request, status, error);
+        //alert("no!");
       }
     })
 
@@ -117,5 +134,6 @@ function upbtnclicked(){
   else{
     alert("Your input is too short!");
   }
+  
 };
 

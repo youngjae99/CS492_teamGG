@@ -44,6 +44,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
   var sentenceList, scoreList;
   // firebase.database().ref().set({Sam:{1129:{'point':0.75,'posneg':'positive','posment':{1:'pos1',2:'pos2'},'negment':{1:'neg1',2:'neg2'}}}})
 
+  console.log("===== data print from url =======");
   console.log("targetname:", targetname);
   console.log("date:", date);
   firebase
@@ -57,6 +58,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
   
 
   function apply() {
+    console.log("===== got from firebase =======")
     console.log("in apply", sentenceList);
     var chatbox = document.getElementById("chatbox");
 
