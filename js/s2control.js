@@ -42,6 +42,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
   var choice;
   var sentenceList, scoreList;
+  var firstscore;
   // firebase.database().ref().set({Sam:{1129:{'point':0.75,'posneg':'positive','posment':{1:'pos1',2:'pos2'},'negment':{1:'neg1',2:'neg2'}}}})
 
   console.log("===== data print from url =======");
@@ -52,6 +53,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     .ref("/" + targetname + "/" + date)
     .once("value", function (snapshot) {
       mySnapshot = snapshot.val();
+      firstscore = mySnapshot.point;
       scoreList = mySnapshot.scores;
       sentenceList = mySnapshot.sentences;
     }).then(apply);
@@ -61,6 +63,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
     console.log("===== got from firebase =======")
     console.log("in apply", sentenceList);
     var chatbox = document.getElementById("chatbox");
+
+    var leftpos = 300 + firstscore*250;
+    document.getElementById("arrow-result").style.left = leftpos+"px";
+    document.getElementById("point").innerHTML = firstscore.toFixed(3);
 
     for (i = 0; i < sentenceList.length; i++){
       

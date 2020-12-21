@@ -166,3 +166,8 @@ mark.p3{
     font-size: 25px;
     color:dimgray;
 }
+
+#arrow-result{
+    position: relative;
+    top:0;
+}

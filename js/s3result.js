@@ -46,13 +46,13 @@ firebase.database().ref('/'+targetname+'/'+date).once('value', function(snapshot
     if(mySnapshot.human_posneg.toLowerCase()=='positive'){human='1'}
     else if (mySnapshot.human_posneg.toLowerCase()=='neutral'){human='0'}
     else if (mySnapshot.human_posneg.toLowerCase()=='negative'){human='-1'}
-    /*
+    
     var pre_human=''
     if(mySnapshot.pre_human_posneg.toLowerCase()=='positive'){pre_human='1'}
     else if (mySnapshot.pre_human_posneg.toLowerCase()=='neutral'){pre_human='0'}
     else if (mySnapshot.pre_human_posneg.toLowerCase()=='negative'){pre_human='-1'}
     console.log("firebase result", AI, human, pre_human);
-    */
+    
     console.log("firebase result", AI, human);
     document.getElementById('AI '+AI).innerHTML="<center><img src='../pictures/AI.png' width=\"100px\"/></center>"
     document.getElementById('human '+human).innerHTML="<center><img src='../pictures/user.png' width=\"100px\"/></center>"
@@ -61,11 +61,11 @@ firebase.database().ref('/'+targetname+'/'+date).once('value', function(snapshot
     var pre_selection=pre_human+' '+AI
     console.log(pre_selection)
     if (human==pre_human){
-        document.getElementById(selection).style.backgroundColor='#be93d4'
+        document.getElementById(selection).style.backgroundColor='#da70d6'
     }
     else{
-        document.getElementById(selection).style.backgroundColor='#be93d4'
-        document.getElementById(pre_selection).style.backgroundColor='#da70d6'
+        document.getElementById(selection).style.backgroundColor='#da70d6'
+        document.getElementById(pre_selection).style.backgroundColor='#be93d4'
     }
     
     

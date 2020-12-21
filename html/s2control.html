@@ -105,17 +105,14 @@
                                                 <div id='neg'>Negative</div>
                                                 <div id='pos'>Positive</div>
                                             </div>
-                                            <div id='status_bar'>
-
+                                            <div id='status_bar'></div>
+                                            <div>
+                                                <div id='arrow-result'>
+                                                    <div id='arrow-up'></div>
+                                                    <div id='point'></div>
+                                                </div>
                                             </div>
-                                            <div id='arrow-result'>
-                                                <div id='arrow-up'></div>
-                                                <div id='point'></div>
-                                            </div>
-
                                         </div>
-
-
                                     </div>
                                 </div>
 
@@ -124,7 +121,7 @@
                                         style="display:inline">Sam</div>.
                                     <br>
                                     <div id="chatbox">
-                                        
+
                                     </div>
 
 
@@ -160,12 +157,13 @@
                                         <button class="decision" onClick="apply('negative')">Negative</button>
                                         <br><br>
                                         <p style="text-align: center;">
-                                            <button id="next_page" class="btn btn-primary" onClick="nextpage()" disabled='true'>
+                                            <button id="next_page" class="btn btn-primary" onClick="nextpage()"
+                                                disabled='true'>
                                                 See the final result!
                                             </button>
-                                            </p>
+                                        </p>
                                     </div>
-                                    
+
 
                                 </div>
                             </div>
@@ -192,7 +190,7 @@
     <!-- <script src="../js/main.js"></script> -->
     <script>
         function apply(sel) {
-
+            /*
             firebase.database().ref('/' + targetname + '/' + date).once('value', function (snapshot) {
                 mySnapshot = snapshot.val()
                 var posneg = mySnapshot.posneg
@@ -216,10 +214,10 @@
                 console.log(dic)
 
                 //firebase.database().ref('/'+targetname+'/'+date).remove()
-                firebase.database().ref('/' + targetname + '/' + date).set(
+                /*firebase.database().ref('/' + targetname + '/' + date).set(
                     dic
                 )
-            })
+            })*/
             document.getElementById('next_page').disabled = false
 
         }
