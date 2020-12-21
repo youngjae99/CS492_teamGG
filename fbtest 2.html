@@ -1,0 +1,29 @@
+
+<head></head>
+<body>
+<script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-app.js"></script> 
+<script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-database.js"></script>
+
+
+<script> // below is js code, must be below all the components on the screen
+
+//setting firebase
+var firebaseConfig = 
+{  apiKey: "AIzaSyCg2H_5AnifrBDQZ-gY82UtZYVwkfVLZPg",
+    authDomain: "hai-gg-f140f.firebaseapp.com",
+    databaseURL: "https://hai-gg-f140f.firebaseio.com",
+    projectId: "hai-gg-f140f",
+    storageBucket: "hai-gg-f140f.appspot.com",
+    messagingSenderId: "108882535634",
+    appId: "1:108882535634:web:4a8200edf49c777a8eb90b",
+    measurementId: "G-20V6VJBDGD" }; // Initialize 
+
+
+firebase.initializeApp(firebaseConfig); 
+firebase.analytics(); 
+var database=firebase.database()
+
+</script>
+</body>
+
