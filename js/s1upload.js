@@ -112,7 +112,7 @@ function upbtnclicked(){
     })
 
     //페이지 이동
-    location.href = "./s2control.html?name=" + f_name+"&date="+f_date+"pos"+pos+"neg"+neg;
+    location.href = "./s2control.html?name=" + f_name+"&date="+f_date+"&pos="+pos+"&neg="+neg;
   }
   else{
     alert("Your input is too short!");

@@ -76,7 +76,7 @@ neg=getParam("neg");
 
 function upbtnclicked(){
   console.log("btn clicked");
-  location.href="./s1upload.html?pos=" +document.getElementById('threshold').innerHTML.split('.')[1]+"neg="+neg
+  location.href="./s1upload.html?pos=" +document.getElementById('threshold').innerHTML.split('.')[1]+"&neg="+neg
 
   
   

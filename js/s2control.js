@@ -31,6 +31,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
   }
   pos=getParam('pos');
   neg=getParam('neg');
+  pos_threshold='0.'+pos
+  neg_threshold='-0.'+neg
   
   targetname = getParam("name");
   date = getParam("date");
@@ -73,6 +75,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
   var pos_part=-0.5;
 
 
+
   function changeColor(){
     var p_slider = document.getElementById("p_slider");
     var p_threshold = (parseInt(p_slider.value)-50); // 긍정 threshold
@@ -102,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
   var p_slider = document.getElementById("p_slider");
   var p_threshold = document.getElementById("p_threshold");
-  p_threshold.innerHTML = (parseInt(p_slider.value)-50); // Display the default slider value
+  p_threshold.innerHTML = (parseInt(p_slider.value)-50);// Display the default slider value
   // Update the current slider value (each time you drag the slider handle)
   p_slider.oninput = function () {
     p_threshold.innerHTML = (parseInt(this.value)-50);
@@ -110,6 +113,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
     changeColor();
     //console.log("after firebase get :", scoreList, sentenceList );
   };
+  default_value=pos_threshold*100
+  p_slider.value=default_value
+  p_threshold.innerHTML = (default_value-50);
+  p_threshold2.innerHTML = 0.5 + (default_value-50)*0.01;
+  //changeColor();
 
   var n_slider = document.getElementById("n_slider");
   var n_threshold = document.getElementById("n_threshold");
@@ -121,4 +129,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
     changeColor();
     //console.log("after firebase get :", scoreList, sentenceList );
   };
+  default_neg_value=neg_threshold*-100
+  console.log(default_neg_value)
+  n_slider.value=default_neg_value
+  n_threshold.innerHTML = (default_neg_value-50);
+  n_threshold2.innerHTML = 0.5 + (default_neg_value-50)*0.01;
+  
 });
