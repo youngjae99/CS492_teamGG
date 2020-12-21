@@ -38,20 +38,31 @@ firebase.database().ref('/'+targetname+'/'+date).once('value', function(snapshot
     mySnapshot=snapshot.val()
     
     var AI=''
-    if(mySnapshot.posneg=='positive'){AI='1'}
-    else if (mySnapshot.posneg=='neutral'){AI='0'}
-    else if (mySnapshot.posneg=='negative'){AI='-1'}
+    if(mySnapshot.posneg.toLowerCase()=='positive'){AI='1'}
+    else if (mySnapshot.posneg.toLowerCase()=='neutral'){AI='0'}
+    else if (mySnapshot.posneg.toLowerCase()=='negative'){AI='-1'}
     var human=''
-    if(mySnapshot.human_posneg=='positive'){human='1'}
-    else if (mySnapshot.human_posneg=='neutral'){human='0'}
-    else if (mySnapshot.human_posneg=='negative'){human='-1'}
-
+    if(mySnapshot.human_posneg.toLowerCase()=='positive'){human='1'}
+    else if (mySnapshot.human_posneg.toLowerCase()=='neutral'){human='0'}
+    else if (mySnapshot.human_posneg.toLowerCase()=='negative'){human='-1'}
+    var pre_human=''
+    if(mySnapshot.pre_human_posneg.toLowerCase()=='positive'){pre_human='1'}
+    else if (mySnapshot.pre_human_posneg.toLowerCase()=='neutral'){pre_human='0'}
+    else if (mySnapshot.pre_human_posneg.toLowerCase()=='negative'){pre_human='-1'}
+   
     document.getElementById('AI '+AI).innerHTML="<center><img src='../pictures/AI.png' width=\"100px\"/></center>"
     document.getElementById('human '+human).innerHTML="<center><img src='../pictures/user.png' width=\"100px\"/></center>"
     
     var selection=human+' '+AI
-
-    document.getElementById(selection).style.backgroundColor='#be93d4'
+    var pre_selection=pre_human+' '+AI
+    console.log(pre_selection)
+    if (human==pre_human){
+    document.getElementById(selection).style.backgroundColor='#be93d4'}
+    else{
+        document.getElementById(selection).style.backgroundColor='#be93d4'
+        document.getElementById(pre_selection).style.backgroundColor='#da70d6'
+    }
+    
     
 })
 })
