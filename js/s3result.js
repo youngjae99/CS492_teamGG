@@ -54,8 +54,8 @@ firebase.database().ref('/'+targetname+'/'+date).once('value', function(snapshot
     console.log("firebase result", AI, human, pre_human);
     
     console.log("firebase result", AI, human);
-    document.getElementById('AI '+AI).innerHTML="<center><img src='../pictures/AI.png' width=\"100px\"/></center>"
-    document.getElementById('human '+human).innerHTML="<center><img src='../pictures/user.png' width=\"100px\"/></center>"
+    document.getElementById('AI '+AI).innerHTML="<center><p>AI think "+mySnapshot.posneg+"!</p><img src='../pictures/AI.png' width=\"100px\"/></center>"
+    document.getElementById('human '+human).innerHTML="<center><p>You think "+mySnapshot.human_posneg+"!</p><img src='../pictures/user.png' width=\"100px\"/></center>"
     
     var selection=human+' '+AI
     var pre_selection=pre_human+' '+AI
