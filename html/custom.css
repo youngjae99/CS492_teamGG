@@ -171,3 +171,8 @@ mark.p3{
     position: relative;
     top:0;
 }
+
+.cbtext{
+    font-weight: 700;
+    margin: 0;
+}
